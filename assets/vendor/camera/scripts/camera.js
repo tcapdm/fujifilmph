@@ -1222,7 +1222,7 @@
 					slideOn = opts.slideOn;
 				}
 			}
-				
+
 			var dataTime = $(' > div',elem).eq(slideI).attr('data-time');
 			if(typeof dataTime !== 'undefined' && dataTime!== false && dataTime!== ''){
 				time = parseFloat(dataTime);
