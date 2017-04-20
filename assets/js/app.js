@@ -11,14 +11,14 @@ $(function() {
 		winHeight = $window.innerHeight(),
 		$header = $('header'),
 		hh = $header.innerHeight(),
-		imgs = document.body.getElementsByTagName('img');
+		imgs = document.body.getElementsByTagName('img'),
+		widthOfSearch = winWidth-50;
 
 	var updateOnResize = debounce(function() {
 		updateValueOnResize();
 		updateStyleOnResize();
-		menuTransfer();
-		breadcrumbsResponsive();
 	}, 250);
+
 
 sliderColorText();
 updateStyleOnResize();
@@ -69,18 +69,18 @@ function hasScrolled() {
 */
 
 $('#homeSlider').camera({
-	height: '40%',
+	height: '45%',
 	fx:'simpleFade',
-	pagination: true,
+	pagination: false,
 	navigation:true,
 	opacityOnGrid: false,
-	time: 3000, //tagal ng pagstay ng image
+	time: 10000, //tagal ng pagstay ng image
 	transPeriod: 1000, //animation ng pagpalit ng image
 	imagePath: 'assets/vendor/camera/images/',
 	hover: false,
 	playPause: false,
 	loader: 'bar',
-	// thumbnails: true,
+	thumbnails: true,
 	onEndTransition: function() {
 		sliderColorText();
 	}
@@ -176,7 +176,6 @@ var searchForm = function(){
 * --------------------------------------------------------------------------
 */
 
-
 function sliderColorText(){
 	var brightness = 0;
 	getImageBrightness($(".cameraCont .cameracurrent img, .cameraCont .cameracurrent video").attr('src'),function(brightness) {
@@ -192,6 +191,30 @@ function sliderColorText(){
     });
 }
 
+
+/**
+* --------------------------------------------------------------------------
+* DYNAMIC CHANGE OF COLOR ON SLIDER
+* --------------------------------------------------------------------------
+*/
+
+var searchResponsive = function(){
+	if(winWidth <= 1110){
+		$('input[type=search]').focusin(function(){
+			$(this).css('width',widthOfSearch);
+		});
+		$('input[type=search]').focusout(function(){
+			$(this).css('width',0);
+		});
+	} else {
+		$('input[type=search]').focusin(function(){
+			$(this).css('width',200);
+		});
+		$('input[type=search]').focusout(function(){
+			$(this).css('width',150);
+		});
+	}
+}();
 
 /**
 * --------------------------------------------------------------------------
@@ -246,10 +269,10 @@ function updateValueOnResize() {
 	winHeight = $window.innerHeight();
 	hh = $header.innerHeight();
 	docHeight = $document.innerHeight();
+	widthOfSearch = $window.innerWidth()-50;
 }
 
 function updateStyleOnResize() {
-
 	//hide header on on scroll down
 	$('.nav-up').css('top', '-'+hh);
 }
