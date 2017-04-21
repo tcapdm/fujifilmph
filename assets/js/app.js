@@ -68,27 +68,52 @@ function hasScrolled() {
 * --------------------------------------------------------------------------
 */
 
-$('#homeSlider').camera({
-	height: '45%',
-	fx:'simpleFade',
-	pagination: false,
-	navigation:true,
-	opacityOnGrid: false,
-	time: 10000, //tagal ng pagstay ng image
-	transPeriod: 1000, //animation ng pagpalit ng image
-	imagePath: 'assets/vendor/camera/images/',
-	hover: false,
-	playPause: false,
-	loader: 'bar',
-	thumbnails: true,
-	onEndTransition: function() {
-		sliderColorText();
-	}
+$('.home-slider').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  fade: true,
+  asNavFor: '.home-thumbs-slider',
+  
 });
 
+$('body').find('.slick-slide').each(function(i, el) {
+	var getHeight = $(el).find('img').height();
+	console.log(getHeight)
+});
+$('.home-thumbs-slider').slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  asNavFor: '.home-slider',
+  dots: true,
+  focusOnSelect: true,
+  arrows: true,
+  infinite: true,
+  focusOnSelect: true,
+  variableWidth: true
+});
+
+// $('#homeSlider').camera({
+// 	height: '45%',
+// 	fx:'simpleFade',
+// 	pagination: false,
+// 	navigation:true,
+// 	opacityOnGrid: false,
+// 	time: 10000, //tagal ng pagstay ng image
+// 	transPeriod: 1000, //animation ng pagpalit ng image
+// 	imagePath: 'assets/vendor/camera/images/',
+// 	hover: false,
+// 	playPause: false,
+// 	loader: 'bar',
+// 	thumbnails: true,
+// 	onEndTransition: function() {
+// 		sliderColorText();
+// 	}
+// });
 
 
-$(".cameraContent").on("DOMSubtreeModified",function(){
+
+/*$(".cameraContent").on("DOMSubtreeModified",function(){
 	$(this).find('iframe').on('load', function(){
 		var cssLink = document.createElement("link");
 		cssLink.href = "../assets/css/style.css";  
@@ -113,7 +138,7 @@ $(".cameraContent").on("DOMSubtreeModified",function(){
 		});
 
 	});
-});
+});*/
 // $(document).on('ready', function(){
 // var a = $('iframe#sliderVideo').contents().find('video');
 // 		var iframeElem = $(this);
@@ -175,17 +200,18 @@ var searchForm = function(){
 * DYNAMIC CHANGE OF COLOR ON SLIDER
 * --------------------------------------------------------------------------
 */
+$('.home-slider').on('afterChange', function(event, slick, currentSlide, nextSlide){
+	sliderColorText();
+});
 
 function sliderColorText(){
 	var brightness = 0;
-	getImageBrightness($(".cameraCont .cameracurrent img, .cameraCont .cameracurrent video").attr('src'),function(brightness) {
-        // document.getElementsByTagName('pre')[0].innerHTML = "Brightness: "+brightness;
-        // console.log(brightness);
+	getImageBrightness($(".home-slider .slick-active img, .home-slider .slick-active video").attr('src'),function(brightness) {
         if (brightness <= 135){
-			$('.camera_caption h2, .header-nav ul li a').css('color','#f7f7f7');
+			$('.home-slider-txt h2, .header-nav ul li a').css('color','#f7f7f7');
 			$('.header-logo a img').attr('src','images/logo-white.png');
 		} else {
-			$('.camera_caption h2, .header-nav ul li a').css('color','#242424');
+			$('.home-slider-txt h2, .header-nav ul li a').css('color','#242424');
 			$('.header-logo a img').attr('src','images/logo-dark.png');
 		}
     });
@@ -197,9 +223,10 @@ function sliderColorText(){
 * DYNAMIC CHANGE OF COLOR ON SLIDER
 * --------------------------------------------------------------------------
 */
+function searchResponsive() {
 
-var searchResponsive = function(){
 	if(winWidth <= 1110){
+		$('input[type=search]').css('width',0);
 		$('input[type=search]').focusin(function(){
 			$(this).css('width',widthOfSearch);
 		});
@@ -207,6 +234,7 @@ var searchResponsive = function(){
 			$(this).css('width',0);
 		});
 	} else {
+		$('input[type=search]').css('width',150);
 		$('input[type=search]').focusin(function(){
 			$(this).css('width',200);
 		});
@@ -214,7 +242,9 @@ var searchResponsive = function(){
 			$(this).css('width',150);
 		});
 	}
-}();
+}
+
+searchResponsive();
 
 /**
 * --------------------------------------------------------------------------
@@ -275,6 +305,7 @@ function updateValueOnResize() {
 function updateStyleOnResize() {
 	//hide header on on scroll down
 	$('.nav-up').css('top', '-'+hh);
+	searchResponsive();
 }
 
 function debounce(func, wait, immediate) {
