@@ -9,10 +9,15 @@ $(function() {
 		docHeight = $document.innerHeight(),
 		winWidth = $window.innerWidth(),
 		winHeight = $window.innerHeight(),
-		$header = $('header'),
+		$header = $('.header'),
 		hh = $header.innerHeight(),
 		imgs = document.body.getElementsByTagName('img'),
-		widthOfSearch = winWidth-50;
+		widthOfSearch = winWidth-50,
+		sgw = $('.slider-guide').innerWidth(),
+		sgh = $('.slider-guide').innerHeight(),
+		sliderDataHeight = $('.slider-guide').attr('data-height'),
+		percent = sliderDataHeight.split("%")[0],
+		sliderHeight = winWidth*percent/100;
 
 	var updateOnResize = debounce(function() {
 		updateValueOnResize();
@@ -22,6 +27,7 @@ $(function() {
 
 sliderColorText();
 updateStyleOnResize();
+searchResponsive();
 
 
 /**
@@ -50,13 +56,14 @@ function hasScrolled() {
 	// This is necessary so you never see what is "behind" the navbar.
 	if (st > lastScrollTop && st > hh){
 		// Scroll Down
-		$('header').removeClass('nav-down').addClass('nav-up');
-		$('.nav-up').css('top', '-'+hh+'px');
+		$('.header, .burger, .search').css('top', '-'+hh+'px');
+		// $('.burger').css('top',)
 	} else {
 		// Scroll Up
 		if(st + winHeight < docHeight) {
-			$('header').removeClass('nav-up').addClass('nav-down');
-			$('.nav-down').css('top', 0);
+			$('.header').css('top', 0);
+			$('.burger').css('top', 10);
+			$('.search').css('top', 7);
 		}
 	}
 	lastScrollTop = st;
@@ -77,10 +84,6 @@ $('.home-slider').slick({
   
 });
 
-$('body').find('.slick-slide').each(function(i, el) {
-	var getHeight = $(el).find('img').height();
-	console.log(getHeight)
-});
 $('.home-thumbs-slider').slick({
   slidesToShow: 3,
   slidesToScroll: 1,
@@ -228,10 +231,19 @@ function searchResponsive() {
 	if(winWidth <= 1110){
 		$('input[type=search]').css('width',0);
 		$('input[type=search]').focusin(function(){
+			$('.shadow').fadeIn();
 			$(this).css('width',widthOfSearch);
+			$('.burger').css('z-index','-1');
+			$('input[type=search]').siblings().toggleClass('fa-search fa-close');
+			$('input[type=search]').siblings().css('z-index','9');
+			
 		});
 		$('input[type=search]').focusout(function(){
 			$(this).css('width',0);
+			$('.burger').css('z-index','2');
+			$('.shadow').fadeOut();
+			$('input[type=search]').siblings().toggleClass('fa-close fa-search');
+			$('input[type=search]').siblings().css('z-index','-1');
 		});
 	} else {
 		$('input[type=search]').css('width',150);
@@ -245,6 +257,28 @@ function searchResponsive() {
 }
 
 searchResponsive();
+
+
+/**
+* --------------------------------------------------------------------------
+* RESPONSIVE MENU
+* --------------------------------------------------------------------------
+*/
+
+var mobileNav = function(){
+	$('.burger').on('click', function(){
+		$('.shadow').fadeIn();
+		$('.header-nav').css('left',0);
+		$('.search').css('z-index','-1');
+		$('body').animate({'left':200},400);
+	});
+	$('.shadow').on('click',function(){
+		$('.shadow').fadeOut();
+		$('.header-nav').css('left',-200);
+		$('body').animate({'left':0},400);
+		$('.search').css('z-index','7');
+	});
+}();
 
 /**
 * --------------------------------------------------------------------------
@@ -299,13 +333,18 @@ function updateValueOnResize() {
 	winHeight = $window.innerHeight();
 	hh = $header.innerHeight();
 	docHeight = $document.innerHeight();
-	widthOfSearch = $window.innerWidth()-50;
+	widthOfSearch = winWidth-80;
+	sgw = $('.slider-guide').innerWidth();
+	sgh = $('.slider-guide').innerHeight();
+	sliderDataHeight = $('.slider-guide').attr('data-height');
+	percent = sliderDataHeight.split("%")[0];
+	sliderHeight = winWidth*percent/100;
 }
 
 function updateStyleOnResize() {
-	//hide header on on scroll down
 	$('.nav-up').css('top', '-'+hh);
 	searchResponsive();
+	$('.home-slider .slick-track').css('height',sliderHeight);
 }
 
 function debounce(func, wait, immediate) {
@@ -357,6 +396,7 @@ function getImageBrightness(imageSrc,callback) {
         callback(brightness);
     }
 }
+$('.home-slider .slick-track').css('height',sliderHeight);
 
 });
 
