@@ -17,7 +17,9 @@ $(function() {
 		sgh = $('.slider-guide').innerHeight(),
 		sliderDataHeight = $('.slider-guide').attr('data-height'),
 		percent = sliderDataHeight.split("%")[0],
-		sliderHeight = winWidth*percent/100;
+		sliderHeight = winWidth*percent/100,
+		$allVideos = $("iframe"),
+		$fluidEl = $("figure");
 
 	var updateOnResize = debounce(function() {
 		updateValueOnResize();
@@ -103,45 +105,42 @@ var cssLink = '<link rel="stylesheet" href="../assets/css/style.css" type="text/
 var iframes = $('.home-slider .slick-track .slick-slide').find('iframe');
 $(iframes).each(function(i, item){
 	var src = $(item).attr('src');
-	$(item).attr('src', src + '?rel=0?&fs=1?&autoplay=1');
+	$(item).attr('src', src + '?rel=0&fs=1&autoplay=1');
 	var h = (winHeight * .18) + winHeight;
-	$(item).attr('width', winWidth + 'px').attr( 'height', h + 'px');
-	$(item).css({ 'width': winWidth + 'px', height: h + 'px' });
+	var newHeight = (winHeight / $(item).width()) * $(item).height();
+	// var newHeightAddedPercentage = 60 / 100;
+	// newHeight = newHeight + (newHeight * newHeightAddedPercentage);
+	// $(item).attr('width', winWidth + 'px').attr( 'height', newHeight + 'px');
+	// $(item).css({ 'width': winWidth + 'px', height: newHeight + 'px' });
+	// var youTubeURL = $(item).attr('src');
+	// var youtuibe_api = "https://www.youtube.com/oembed?url="+ youTubeURL +"&rel=0&fs=1&autoplay=1&format=json";
+	// var ako = $(this);
+	// var json = (function() {
+	//     var json = null;
+	//     $.ajax({
+	//         'async': false,
+	//         'global': false,
+	//         'url': youtuibe_api,
+	//         'dataType': "json",
+	//         'success': function(data) {
+	//             json = data;
+	//             ako.replace(data.html);
+
+	//         }
+	//     });
+	//     return json;
+	// })();
+
 });
-
-// $('#homeSlider').camera({
-// 	height: '45%',
-// 	fx:'simpleFade',
-// 	pagination: false,
-// 	navigation:true,
-// 	opacityOnGrid: false,
-// 	time: 10000, //tagal ng pagstay ng image
-// 	transPeriod: 1000, //animation ng pagpalit ng image
-// 	imagePath: 'assets/vendor/camera/images/',
-// 	hover: false,
-// 	playPause: false,
-// 	loader: 'bar',
-// 	thumbnails: true,
-// 	onEndTransition: function() {
-// 		sliderColorText();
-// 	}
-// });
-
-
-
-	// var cssLink = document.createElement("link");
-	// cssLink.href = "../assets/css/style.css";  
-	// cssLink.rel = "stylesheet";
-	// $('.home-slider .slick-track .slick-slide').find('iframe head').append(cssLink);
-// $(".home-slider").on("DOMSubtreeModified",function(){
-// 	$(this).find('iframe').one('load', function(){
-// 		var cssLink = document.createElement("link");
-// 		cssLink.href = "../assets/css/style.css";  
-// 		cssLink.rel = "stylesheet";  
-// 		cssLink.type = "text/css";
-// 		$(this).contents().find("head").append(cssLink);
-// 	});
-// });
+$(".home-slider").on("DOMSubtreeModified",function(){
+	$(this).find('iframe').one('load', function(){
+		var cssLink = document.createElement("link");
+		cssLink.href = "../assets/css/style.css";  
+		cssLink.rel = "stylesheet";  
+		cssLink.type = "text/css";
+		$(this).contents().find("head").append(cssLink);
+	});
+});
 // $(document).on('ready', function(){
 // var a = $('iframe#sliderVideo').contents().find('video');
 // 		var iframeElem = $(this);
@@ -345,6 +344,19 @@ function updateStyleOnResize() {
 	$('.nav-up').css('top', '-'+hh);
 	searchResponsive();
 	$('.home-slider .slick-track').css('height',sliderHeight);
+	resiveIframe();
+}
+
+resiveIframe();
+
+function resiveIframe() {
+	$allVideos.each(function() {
+		$(this).removeAttr('style');
+	});
+	$('.home-slider .slick-track iframe').each(function(index ,item){
+		$(item).css({'width':sgw , 'height':sgh});
+	});
+	console.log($allVideos)
 }
 
 function debounce(func, wait, immediate) {

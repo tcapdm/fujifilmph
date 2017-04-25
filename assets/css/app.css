@@ -171,7 +171,8 @@ input[type=search]:focus:-ms-input-placeholder {color: transparent;}
 
 .home-slider-wrapper {position: relative;}
 .home-slider .slick-slide img{width: 100%; position: relative;top: 50%;-webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%);}
-.home-slider .slick-slide iframe {width: 100%;height:100%;}
+.home-slider .slick-slide iframe {width: 100% !important;height:100% !important;}
+.home-slider .slick-slide figure {margin: 0; width: 100%; height: 100%;}
 
 .home-slider-txt {font-family:'roboto condensed';text-transform: uppercase;bottom: auto;top: 65%;-webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%);}
 .home-slider-txt h2 {font-size:30px;}
