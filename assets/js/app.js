@@ -100,7 +100,10 @@ $('.home-thumbs-slider').slick({
   variableWidth: true
 });
 
-$('.home-slider .slick-track .slick-slide.slick-current.slick-active video').get(0).play();
+if ($('.home-slider .slick-track .slick-slide.slick-current.slick-active video').length)
+{
+	$('.home-slider .slick-track .slick-slide.slick-current.slick-active video').get(0).play();
+}
 var cssLink = '<link rel="stylesheet" href="../assets/css/style.css" type="text/css">';
 var iframes = $('.home-slider .slick-track .slick-slide').find('iframe');
 $(iframes).each(function(i, item){
