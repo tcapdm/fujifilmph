@@ -413,6 +413,20 @@ function getImageBrightness(imageSrc,callback) {
 }
 $('.home-slider .slick-track').css('height',sliderHeight);
 
+
+/**
+* --------------------------------------------------------------------------
+* FEATURED PRODUCTS
+* --------------------------------------------------------------------------
+*/
+
+ $('.feat-prod').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: true,
+  fade: true,
+});
+
 });
 
 // $('.sliderVideo').addClassName('withborder');
