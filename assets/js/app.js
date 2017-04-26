@@ -1,25 +1,25 @@
 ;(function($, window, document, undefined) {
 
 
-$(function() {
+	$(function() {
 	// globals
 	
 	var $window = $(window),
-		$document = $(document),
-		docHeight = $document.innerHeight(),
-		winWidth = $window.innerWidth(),
-		winHeight = $window.innerHeight(),
-		$header = $('.header'),
-		hh = $header.innerHeight(),
-		imgs = document.body.getElementsByTagName('img'),
-		widthOfSearch = winWidth-50,
-		sgw = $('.slider-guide').innerWidth(),
-		sgh = $('.slider-guide').innerHeight(),
-		sliderDataHeight = $('.slider-guide').attr('data-height'),
-		percent = sliderDataHeight.split("%")[0],
-		sliderHeight = winWidth*percent/100,
-		$allVideos = $("iframe"),
-		$fluidEl = $("figure");
+	$document = $(document),
+	docHeight = $document.innerHeight(),
+	winWidth = $window.innerWidth(),
+	winHeight = $window.innerHeight(),
+	$header = $('.header'),
+	hh = $header.innerHeight(),
+	imgs = document.body.getElementsByTagName('img'),
+	widthOfSearch = winWidth-50,
+	sgw = $('.slider-guide').innerWidth(),
+	sgh = $('.slider-guide').innerHeight(),
+	sliderDataHeight = $('.slider-guide').attr('data-height'),
+	percent = sliderDataHeight.split("%")[0],
+	sliderHeight = winWidth*percent/100,
+	$allVideos = $("iframe"),
+	$fluidEl = $("figure");
 
 	var updateOnResize = debounce(function() {
 		updateValueOnResize();
@@ -27,9 +27,9 @@ $(function() {
 	}, 250);
 
 
-sliderColorText();
-updateStyleOnResize();
-searchResponsive();
+	sliderColorText();
+	updateStyleOnResize();
+	searchResponsive();
 
 
 /**
@@ -80,24 +80,24 @@ function hasScrolled() {
 
 
 $('.home-slider').slick({
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: false,
-  fade: true,
-  asNavFor: '.home-thumbs-slider',
-  
+	slidesToShow: 1,
+	slidesToScroll: 1,
+	arrows: false,
+	fade: true,
+	asNavFor: '.home-thumbs-slider',
+
 });
 
 $('.home-thumbs-slider').slick({
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  asNavFor: '.home-slider',
-  dots: true,
-  focusOnSelect: true,
-  arrows: true,
-  infinite: true,
-  focusOnSelect: true,
-  variableWidth: true
+	slidesToShow: 3,
+	slidesToScroll: 1,
+	asNavFor: '.home-slider',
+	dots: true,
+	focusOnSelect: true,
+	arrows: true,
+	infinite: true,
+	focusOnSelect: true,
+	variableWidth: true
 });
 
 if ($('.home-slider .slick-track .slick-slide.slick-current.slick-active video').length)
@@ -212,14 +212,14 @@ $('.home-slider').on('afterChange', function(event, slick, currentSlide, nextSli
 function sliderColorText(){
 	var brightness = 0;
 	getImageBrightness($(".home-slider .slick-active img, .home-slider .slick-active video").attr('src'),function(brightness) {
-        if (brightness <= 135){
+		if (brightness <= 135){
 			$('.home-slider-txt h2, .header-nav ul li a').css('color','#f7f7f7');
 			$('.header-logo a img').attr('src','images/logo-white.png');
 		} else {
 			$('.home-slider-txt h2, .header-nav ul li a').css('color','#242424');
 			$('.header-logo a img').attr('src','images/logo-dark.png');
 		}
-    });
+	});
 }
 
 
@@ -378,14 +378,14 @@ function debounce(func, wait, immediate) {
 };
 
 function getImageBrightness(imageSrc,callback) {
-    var img = document.createElement("img");
-    img.src = imageSrc;
-    img.style.display = "none";
-    document.body.appendChild(img);
+	var img = document.createElement("img");
+	img.src = imageSrc;
+	img.style.display = "none";
+	document.body.appendChild(img);
 
-    var colorSum = 0;
+	var colorSum = 0;
 
-    img.onload = function() {
+	img.onload = function() {
         // create canvas
         var canvas = document.createElement("canvas");
         canvas.width = this.width;
@@ -398,13 +398,13 @@ function getImageBrightness(imageSrc,callback) {
         var data = imageData.data;
         var r,g,b,avg;
 
-          for(var x = 0, len = data.length; x < len; x+=4) {
-            r = data[x];
-            g = data[x+1];
-            b = data[x+2];
+        for(var x = 0, len = data.length; x < len; x+=4) {
+        	r = data[x];
+        	g = data[x+1];
+        	b = data[x+2];
 
-            avg = Math.floor((r+g+b)/3);
-            colorSum += avg;
+        	avg = Math.floor((r+g+b)/3);
+        	colorSum += avg;
         }
 
         var brightness = Math.floor(colorSum / (this.width*this.height));
@@ -420,11 +420,24 @@ $('.home-slider .slick-track').css('height',sliderHeight);
 * --------------------------------------------------------------------------
 */
 
- $('.feat-prod').slick({
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: true,
-  fade: true,
+$('.feat-prod-a').slick({
+	slidesToShow: 1,
+	slidesToScroll: 1,
+	arrows: true,
+	dots: true,
+	fade: true,
+	asNavFor: '.feat-prod-b',
+	prevArrow: $('.feat-prod-left-arw'),
+	appendDots:$('.feat-prod-dots'),
+	nextArrow: $('.feat-prod-right-arw')
+});
+
+$('.feat-prod-b').slick({
+	slidesToShow: 1,
+	slidesToScroll: 1,
+	arrows: false,
+	adaptiveHeight: true,
+	asNavFor: '.feat-prod-a'
 });
 
 });
