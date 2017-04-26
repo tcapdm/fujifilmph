@@ -30,8 +30,8 @@ video{object-fit:cover; width:100%; }
 * --------------------------------------------------------------------------
 */
 
-.sub-page-title-black {position: relative; text-align: center; text-transform: uppercase; padding: 0 0 20px 0; margin-bottom: 1.67em; color: #000;}
-.sub-page-title-white {position: relative; text-align: center; text-transform: uppercase; padding: 0 0 20px 0; margin-bottom: 1.67em; color:#fff;}
+.sub-page-title-black {font-family: roboto condensed; font-weight: 700;  position: relative; text-align: center; text-transform: uppercase; padding: 0 0 20px 0; margin-bottom: 1.67em; color: #000;}
+.sub-page-title-white {font-family: roboto condensed; font-weight: 700; position: relative; text-align: center; text-transform: uppercase; padding: 0 0 20px 0; margin-bottom: 1.67em; color:#fff;}
 .sub-page-desc-black {text-align: center; margin: 0 0 50px 0; color:#000; font-weight: 300;}
 .sub-page-desc-white {text-align: center; margin:0 0 20px 0; color:#fff; font-weight: 200;}
 .sub-page-title-black:after, .sub-page-title-white:after {position: absolute; content:''; height:1px; width:5%; left:0; bottom:0; right:0; margin:auto; background: #27ae60; height: 3px;}
@@ -789,36 +789,44 @@ ul.footer-links-icon-list li a {
 	margin: 0 0 15px 0;
 }
 
-.footer-subscribe-input:after {
-	content: '';
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding: 9.5%;
-	width: 45px;
-	background: #fff;
-}
-
-.footer-subscribe-form input {
+.footer-subscribe-form input.footer-subscribe-email {
+	color:#fff;
 	width: auto;
 	border: 1px solid #fff;
 	padding: 0 50px 0 15px;
 	margin: 0;
 	font-size: 13px;
 	height: 40px;
+
+}
+
+.footer-subscribe-form input.footer-subscribe-email:focus {
+	border: 1px solid #fff;
+	box-shadow: 0px 0px 0 0 #fff;
 }
 
 .footer-subscribe-icon {
 	color: #000;
-	position: absolute;
-	top: 45%;
 	font-size: 30px;
+	position: absolute;
 	z-index: 4;
-	right: 15px;
+	top: 50%;
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	-o-transform: translateY(-50%);
 	transform: translateY(-50%);
+	cursor: pointer;
+	content: '';
+	right: 0;
+	padding: 0;
+	width: 50px;
+	height: 40px;
+	line-height: 1.25;
+	background: #fff;
+}
+
+.footer-subscribe-submit {
+	display: none;
 }
 
 .footer-copyright p {

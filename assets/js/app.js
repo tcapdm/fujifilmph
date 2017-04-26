@@ -440,6 +440,17 @@ $('.feat-prod-b').slick({
 	asNavFor: '.feat-prod-a'
 });
 
+
+/**
+* --------------------------------------------------------------------------
+* FOOTER SUBMIT BUTTON
+* --------------------------------------------------------------------------
+*/
+
+$('.footer-subscribe-icon').on('click', function(){
+	$('.footer-subscribe-submit').trigger('click');
+});
+
 });
 
 // $('.sliderVideo').addClassName('withborder');
