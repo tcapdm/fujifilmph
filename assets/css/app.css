@@ -549,13 +549,21 @@ input.search-by-location::placeholder {
 */
 
 .link-btn-one {margin-bottom:15px; text-align: center;}
-.link-btn-one a {color: #000; padding: 5px 20px; background: #fff; border-radius: 2px; text-transform: uppercase; display: inline-block;}
+.link-btn-one a {
+    color: #000;
+    background: #fff;
+    display: inline-block;
+    border: 0;
+    padding: 8px 15px;
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+}
 .link-btn-two {margin: 20px 0 15px 0; text-align: center; text-transform: uppercase;}
-.link-btn-two a {border: 1px solid transparent; color: #fff; padding: 8px 20px; background: #444; border-radius: 2px; font-weight: 300; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; display: inline-block;}
+.link-btn-two a {border: 1px solid transparent; color: #fff; padding: 8px 15px; background: #444; font-weight: 300; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; display: inline-block;}
 .link-btn-three {margin: 20px 0 15px 0; text-align: left; text-transform: uppercase;}
-.link-btn-three a {border: 0; color: #27ae60; font-size:13px; padding: 8px 20px; border-radius: 2px; font-weight: 500; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; display: inline-block;}
+.link-btn-three a {border: 0; color: #27ae60; font-size:13px; padding: 8px 15px; font-weight: 500; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; display: inline-block;}
 .link-btn-four {margin: 0 0 15px 0; text-align: center; display: block;}
-.link-btn-four a {background: #000000; color: #ffffff; border: 0; padding: 10px 25px; margin: 0 0 15px 0; text-transform: uppercase; display: inline-block;}
+.link-btn-four a {background: #000000; color: #ffffff; border: 0; padding: 8px 15px; margin: 0 0 15px 0; text-transform: uppercase; display: inline-block;}
 
 .link-btn-five {
 	margin: 0 0 15px 0;
