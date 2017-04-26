@@ -418,7 +418,30 @@ input[type=search]:focus:-ms-input-placeholder {color: transparent;}
 .where-to-buy-txt {padding: 4px 0; margin: 0 0 15px 0;}
 .where-to-buy-txt i {font-size: 25px; margin: 0 10px 0 0;}
 .where-to-buy-txt span {font-weight: 700; vertical-align: 25%; font-size: 15px; text-transform: uppercase;}
-.search-by-location {background: #dfdfdf; height: auto; padding: 5px; border: 2px solid #333333; font-weight: 500; margin: 0 0 15px 0;}
+input.search-by-location {
+	background: #dfdfdf;
+	height: auto;
+	padding: 5px;
+	/*border: 2px solid #333333;*/
+	font-weight: 500;
+	margin: 0 0 15px 0;
+}
+
+
+input.search-by-location::placeholder {
+	color: #000;
+}
+
+.section-where-to-buy .col-custom-wtb,
+.section-where-to-buy .col-custom-search,
+.section-where-to-buy .col-custom-btn {
+	text-align: center;
+}
+
+.section-where-to-buy .col-custom-search {
+	padding: 0 1.5rem 0 .75rem;
+}
+
 .find-now-btn {background: #000000; color: #ffffff; border: 0; padding: 8px 15px; margin: 0 0 15px 0; text-transform: uppercase;}
 .map-icon {font-size: 30px; text-align: right; padding: 4px 0;}
 
@@ -698,6 +721,17 @@ input[type=search]:focus:-ms-input-placeholder {color: transparent;}
 
 .footer-kuba {cursor:pointer;width: 150px; position: absolute; top: -29px; left: 50%; transform: translateX(-50%);}
 .footer-kuba:before {content: '>'; position: absolute; top: 5px; transform: translateX(-40%) rotateZ(-90deg); left: 48%; font-size: 23px; font-family: monospace;color:#fff;}
+
+.footer-kuba:after {
+	content: 'SITEMAP';
+	bottom: -5px;
+	left: 51%;
+	transform: translateX(-50%);
+	position: absolute;
+	color: #fff;
+	font-size: 10px;
+	letter-spacing: 1px;
+}
 
 .footer-links {
 	overflow: hidden;
