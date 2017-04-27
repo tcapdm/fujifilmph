@@ -243,7 +243,7 @@ input[type=button] {
 .home-thumbs-slider .slick-dots li button:before {content:'';right: 0;margin:auto;background:#fff;width: 8px;height: 8px;border-radius:0;-webkit-border-radius:0;top: 50%;-webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%);}
 .home-thumbs-slider .slick-dots li.slick-active button:before {background:#01916d;}
 
-.home-slider-txt {position: absolute;left: 10%;top:50%;-webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%);text-align: left;text-shadow: 2px 2px 0 #5C5C5C;color:#f7f7f7;}
+.home-slider-txt {position: absolute;left: 10%;top:50%;-webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%);text-align: left;color:#f7f7f7;}
 .home-slider-txt h2 {text-transform:uppercase;margin-bottom: 0;font-size:40px;}
 .home-slider-txt h2 span {font-size:50px;font-weight:bold;}
 
@@ -808,6 +808,7 @@ input.search-by-location::placeholder {
 	font-family: roboto condensed;
 	color: #fff;
 	font-size: 25px;
+	margin: 0 0 1em 0;
 }
 
 .footer-subscribe-desc {
@@ -826,6 +827,7 @@ input.search-by-location::placeholder {
 ul.footer-links-text-list {
 	display: inline-block;
 	margin: 0 0 15px 0;
+	float:left;
 }
 
 ul.footer-links-text-list li {
@@ -853,7 +855,7 @@ float: left;
 
 .footer-links-icon-list {
 	display: inline-block;
-	border-left: 1px solid #fff;
+	float:right;
 	margin: 0 0 15px 5px
 }
 
@@ -975,10 +977,10 @@ ul.footer-links-icon-list li a {
 		transform: translateY(0);
 	}
 
-	.footer-links-text-list,
-	.footer-links-icon-list {
+	ul.footer-links-text-list,
+	ul.footer-links-icon-list {
 		display: block;
-		border-left: 0;
+		float:none;
 	}
 
 }
